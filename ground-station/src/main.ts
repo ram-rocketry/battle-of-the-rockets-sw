@@ -5,4 +5,4 @@ import './assets/main.css'
 
 // TODO: initialize serial interface
 
-createApp(App).mount('#app')
+createApp(App).mount("#app")
