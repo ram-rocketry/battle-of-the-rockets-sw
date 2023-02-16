@@ -1,8 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+//import {SerialPort} from "serialport"
+
 import './assets/main.css'
 
-// TODO: initialize serial interface
+// Initialize the serial drivers
+
+
 
 createApp(App).mount("#app")
