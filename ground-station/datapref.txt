@@ -1,4 +1,0 @@
-GPS - Coord
-Altitude - Value/Time
-Temp/Humid - Value/Time
-Panel Voltage - Value/Time
