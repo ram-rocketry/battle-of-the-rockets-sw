@@ -1,32 +1,13 @@
-# ground-station
+# Ground Station
 
-## To Do board (updated)
+The ground station is an electron application that displays data sent from the rocket payload. The application uses `serialport` to communicate with a radio that recieves the data, and `chart.js` to render that data on line graphs.
 
- - [ ] Graphs
-	- [x] Graph rendering system
-	- [x] Automatic graph updating
-	- [ ] Graph colors
-	- [ ] Remove that second y-axis tick line
-	- [ ] Translucent background
-	- [x] Display
- - [ ] Statusbar
-	- [ ] Show connection status
-	- [ ] Add config support
-	- [ ] Functionality
-	- [x] Display
- - [ ] Modals
-	- [ ] Functional modals
-	- [ ] Config
-	- [ ] Message
-	- [ ] Error
-	- [ ] Display
- - [ ] Rocket Info
-	- [ ] Fields
-	- [ ] Name
-	- [x] Display
- - [ ] Systems
-	- [ ] Serial port impl
-		- [x] Initial test
-		- [ ] Functional data grab and store
-		- [ ] Hot swap port config
-	- [ ] ...
+## Configuration
+
+`config.json` is the main configuration file that can either be directly edited in a text editor, or through the settings window within the app itself.
+
+## File structure
+
+- `src` - Sources root
+- `src/classes` - Javascript classes for common components (modals, graphs, etc.)
+- `src/res` - Application resources root

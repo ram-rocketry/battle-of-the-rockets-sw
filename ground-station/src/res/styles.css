@@ -1,0 +1,214 @@
+:root {
+	--color-bg: #333;
+}
+
+html {
+	margin: 0;
+	background-color: var(--color-bg);
+	font-family: sans-serif;
+	color: #fff;
+}
+
+body {
+	margin: 0;
+	overflow-x: hidden;
+}
+
+div.statusbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #ca0;
+	color: #222;
+	width: 98.7vw;
+	padding: 0 10px;
+	position: fixed;
+	bottom: 0;
+}
+
+.bgimg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+}
+
+.bgimg img {
+	opacity: 15%;
+}
+
+/*Toolbar*/
+.right {
+	float: right;
+}
+
+div.toolbar {
+	background-color: #0007;
+	border-radius: 5px;
+	border: 1px solid #fff3;
+	position: fixed;
+	left: 50%;
+	top: 0;
+	width: 100vw;
+	height: auto;
+	padding: 0 5px;
+	transform: translate(-50%, 0)
+}
+
+div.toolbar ul {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 25%;
+}
+
+ul.toolbar-buttons {
+	margin: 0;
+	list-style-type: none;
+	padding: 0;
+	height: inherit;
+}
+
+li.toolbar-button a {
+	border: 1px solid #fff3;
+	border-radius: 5px;
+	transition-property: background;
+	transition-duration: 0.1s;
+	display: block;
+	padding: 8px;
+	color: white;
+	text-decoration: none;
+	float: left;
+}
+
+li.toolbar-button a:hover {
+	background-color: #ca08;
+}
+
+/*Grid*/
+div.maingrid {
+	position: absolute;
+	top: 42px;
+	left: 0;
+	width: 100vw;
+	height: auto;
+	padding-top: 5px;
+	display: grid;
+	grid-template-columns: 32% 32% 32%;
+	gap: 5px;
+	justify-content: center;
+}
+
+div.griditem {
+	background-color: #fec3;
+	padding: 5px;
+	border: 1px solid #fec8;
+	border-radius: 5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0
+}
+
+span.floatr {
+	float: right;
+}
+
+/*Modals*/
+div.modal-titlebar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+div.modal-fade {
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	opacity: 0 !important;
+}
+
+a.modal-titlebar-b {
+	display: block;
+	color: white;
+	background-color: #700;
+	border-radius: 5px;
+	padding: 5px;
+	text-decoration: none;
+	transition-property: background;
+	transition-duration: 0.1s;
+}
+
+a.modal-titlebar-b:hover {
+	background-color: red;
+}
+
+div.modal {
+	opacity: 100%;
+	border-radius: 5px;
+	padding: 5px;
+	position: absolute;
+	max-width: 40vw;
+	bottom: 30px;
+	left: 5px;
+}
+div.center-noclose, div.center {
+	border-radius: 5px;
+	padding: 5px;
+	position: absolute;
+	max-width: 40vw;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.default {
+	background-color: #555c;
+	border: 1px solid #fff8;
+}
+
+.info {
+	background-color: #055c;
+	border: 1px solid #0ff8;
+}
+
+.warning {
+	background-color: #550c;
+	border: 1px solid #ff08;
+}
+
+.error {
+	background-color: #500c;
+	border: 1px solid #f008;	
+}
+
+.success {
+	background-color: #050c;
+	border: 1px solid #0f08;
+}
+
+li.active a {
+	background-color: #0c08;
+}
+
+li.working a {
+	background-color: #6668;
+}
+
+/*Config form*/
+
+div.centercontent {
+	display: flex;
+	flex-direction: column;
+}
+div.formelement {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 5px;
+}
+div.formelement input {
+	width: 40%;
+}

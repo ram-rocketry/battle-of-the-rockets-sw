@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ram Rocketry Ground Station</title>
+		<link rel="stylesheet" href="res/styles.css">
+		<link rel="favicon" href="res/favicon.ico">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">
+		<script type="module" src="renderer.mjs"></script>
+		<script defer>
+			function removeModal(id) {
+				if (!id) return
+				var modal = document.getElementById(id)
+				modal.classList.add('modal-fade')
+				setTimeout(() => {
+					document.body.removeChild(modal)
+				}, 150) //Ensure the transition works
+			}
+
+			function hideConfig() {
+				document.getElementById('configmodal').style.visibility = "hidden"
+			}
+		</script>
+	</head>
+	<body>
+		<div class="bgimg">
+			<img src="res/white_text.png">
+		</div>
+		<div class="maingrid" id="grid">
+			<div class="griditem">
+				<h3>Rocket Information</h3>
+				<hr>
+				<p>
+					Rocket name: <span class="floatr" id="rctname">UNKNOWN</span><br>
+					Altitude: <span class="floatr" id="rctalt">UNKNOWN</span><br>
+					Velocity: <span class="floatr" id="rctvel">UNKNOWN</span><br>
+					Voltage: <span class="floatr" id="rctvolt">UNKNOWN</span><br>
+					Coordinates: <span class="floatr" id="rctcoords">UNKNOWN</span>
+				</p>
+			</div>
+		</div>
+		<div class="toolbar">
+			<ul class="toolbar-buttons">
+				<li class="toolbar-button" id="startstoptoggle"><a onclick="">Start/Pause &#x23EF;</a></li>
+				<li class="toolbar-button" id="sptcon"><a href=# id="sptcont">Connect...</a></li>
+				<li class="toolbar-button right" id="config"><a href=#>Config &#x2699;</a></li>
+			</ul>
+		</div>
+		<div class="statusbar">
+			<span>
+				Serial Port: <span id="portstat">DISCONNECTED</span>
+			</span>
+			<span>
+				Paused: <span id="pausestat">PAUSED</span>
+			</span>
+		</div>
+		<!-- Manual modals below here -->
+		<div class="center-noclose info" id="pausemodal">
+			<h3 style="padding: 0 10px;">Listener Paused</h3>
+		</div>
+		<div class="center default" id="configmodal" style="visibility: hidden; min-width: 40vw">
+			<div class="modal-titlebar">
+				<h3>Config</h3>
+				<a class="modal-titlebar-b" href=# onclick="hideConfig()">&times;</a>
+			</div>
+			<hr>
+			<div class="centercontent">
+
+				<div class="formelement">
+					<span>Input Format</span>
+					<input id="inputFormatRaw" type="text" placeholder="$variable,$nextVariable,...">
+				</div>
+
+				<div> <!--separator node-->
+					<hr>
+					<h4 style="margin-bottom: 5px;">Serial port config</h4>
+				</div>
+
+				<div class="formelement">
+					<span>Port</span> <!--TODO: list instead of textbox-->
+					<input id="serialPort" type="text" placeholder="/dev/tty3 or COMX">
+				</div>
+				<div class="formelement"> <!--List instead of textbox-->
+					<span>Baudrate</span>
+					<input id="serialPortBaudrate" type="number" placeholder="9600">
+				</div>
+				<div class="formelement">
+					<span>Parity</span>
+					<input id="serialPortParity" type="text" placeholder="None, even, odd, space">
+				</div>
+				<div class="formelement">
+					<span>Stop bits</span>
+					<input id="serialPortStopBits" type="number">
+				</div>
+				<!--TODO: graph management-->
+			</div>
+		</div>
+		<!-- Auto modals below here -->
+	</body>
+</html>

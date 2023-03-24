@@ -1,0 +1,45 @@
+{
+	"graphs":[
+		{
+			"title":"Rocket Altitude",
+			"id":"alt",
+			"yLabel":"Altitude",
+			"units":"m"
+		},
+		{
+			"title":"Rocket Velocity",
+			"id":"vel",
+			"yLabel":"Velocity",
+			"units":"m/s"
+		},
+		{
+			"title":"Sensor Humidity",
+			"id":"hum",
+			"yLabel":"Humidity",
+			"units":"%"
+		},
+		{
+			"title":"Sensor Temperature",
+			"id":"tem",
+			"yLabel":"Temperature",
+			"units":"C"
+		},
+		{
+			"title":"Sensor Voltage",
+			"id":"vol",
+			"yLabel":"Voltage",
+			"units":"V"
+		}
+	],
+	"options":{
+		"dataScheme":"$alt,$vel,$vol,$tem,$hum,$coordx,$coordy",
+		"paused":false,
+		"rocketName":"RR BOTR 2023",
+		"serial": {
+			"path": "COM4",
+			"baudRate": 57600,
+			"parity": "space",
+			"stopBits": 1
+		}
+	}
+}
