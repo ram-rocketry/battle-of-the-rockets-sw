@@ -4,7 +4,7 @@
 
 Managed by Evan Floyd (Surge)
 
-The ground station is used for visualizing data sent by the rocket payload, as well as other useful information. The software uses VueJS for frontend and a custom TypeScript backend.
+The ground station is used for visualizing data sent by the rocket payload, as well as other useful information. The software utilizes Electron as the main window, and runs a custom frontend and backend system.
 
 ### How to run
 
