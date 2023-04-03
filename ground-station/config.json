@@ -35,6 +35,12 @@
 		"dataScheme":"$alt,$vel,$vol,$tem,$hum,$coordx,$coordy",
 		"paused":false,
 		"rocketName":"RR BOTR 2023",
+		"additionalFields": {
+			"coordinates": {
+				"display": "Coordinates",
+				"textFormat": "$coordx, $coordy" 
+			}
+		},
 		"serial": {
 			"path": "COM4",
 			"baudRate": 57600,

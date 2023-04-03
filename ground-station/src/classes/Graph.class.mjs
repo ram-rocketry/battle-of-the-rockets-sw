@@ -8,7 +8,7 @@ class Graph {
 		this.id = options.id
 		
 		this.data = {
-			labels: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], //TODO: make this somewhat dynamic
+			labels: [], //TODO: make this somewhat dynamic
 			datasets: [
 				{
 					label: options.yLabel,

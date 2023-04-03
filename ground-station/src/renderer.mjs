@@ -9,7 +9,6 @@ const { graphs, options } = require('../config.json')
 
 // Constants for most-used elements
 const portStat = document.getElementById('portstat')
-const pauseStat = document.getElementById('pausestat')
 const root = document.getElementById('grid')
 const pauseModal = document.getElementById('pausemodal')
 const configModal = document.getElementById('configmodal')
@@ -17,6 +16,7 @@ const pauseButton = document.getElementById('startstoptoggle')
 const serPortConnButton = document.getElementById('sptcon')
 const serPortConnButtonText = document.getElementById('sptcont')
 const configButton = document.getElementById('config')
+const clearButton = document.getElementById('clearBtn')
 
 // Config elements
 const cfgInputFormatField = document.getElementById('inputFormatRaw')
@@ -39,9 +39,24 @@ var graphObjs = []					// Loaded graphs
 var port = undefined				// Serial port
 var dataBuffer = []					// Data in our "buffer"
 
+var counter = 0						// Test counter
+
 //TODO: add data input things so we can see older data, add data saving system
 
 // Button event listeners
+clearButton.addEventListener('click', (event) => {
+	event.preventDefault()
+	for (var x in graphObjs) {
+		var g = graphObjs[x].graph
+		g.data.datasets[0].data = []
+		g.data.labels = []
+
+		counter = 0
+
+		g.update()
+	}
+})
+
 pauseButton.addEventListener('click', (event) => { //Pause button
 	event.preventDefault()
 	pauseUnpause()
@@ -80,7 +95,7 @@ export function initSerial() {
 		} else {
 			portStat.innerText = "CONNECTED"
 			serPortConnButton.classList.add('active')
-			createModal('Serial port open', `Opened port '${options.port}'`, 'generic', 'success')
+			createModal('Serial port open', `Opened port '${options.serial.path}'`, 'generic', 'success')
 			serPortConnButtonText.innerText = "Disconnect"
 			portStatus = 2
 		}
@@ -237,13 +252,18 @@ setInterval(() => {
 	for(var x in graphObjs) {
 		// Prevent graphs from updating if the system is paused
 		if(!paused) {
-			var g = graphObjs[x]
+			var g = graphObjs[x].graph
 			
-			if (useNewData) g.data.datasets[0].graph.data.push(newData[x])
+			if (useNewData) {
+				g.data.labels.push(counter)
+				g.data.datasets[0].data.push(newData[x])
+			}
 
 			g.update()
 		}
 	}
+
+	if (useNewData) counter++
 }, 25)
 
 // Clear buffer every second
