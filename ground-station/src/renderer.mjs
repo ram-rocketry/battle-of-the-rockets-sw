@@ -8,7 +8,6 @@ import { Modal } from './classes/Modal.class.mjs'
 const { graphs, options } = require('../config.json')
 
 // Constants for most-used elements
-const portStat = document.getElementById('portstat')
 const root = document.getElementById('grid')
 const pauseModal = document.getElementById('pausemodal')
 const configModal = document.getElementById('configmodal')
@@ -25,6 +24,15 @@ const cfgSerialPortBaudField = document.getElementById('serialPortBaudrate')
 const cfgSerialPortParityField = document.getElementById('serialPortParity')
 const cfgSerialPortStopBitField = document.getElementById('serialPortStopBits')
 
+// Panel elements
+const coords = document.getElementById('rctcoords')
+const rctName = document.getElementById('rctname')
+
+
+// Statusbar elements
+const portStat = document.getElementById('portstat')
+const gpsStat = document.getElementById('gpsstat')
+
 //TODO: graph management
 
 // Chart.js defaults
@@ -40,6 +48,9 @@ var port = undefined				// Serial port
 var dataBuffer = []					// Data in our "buffer"
 
 var counter = 0						// Test counter
+
+//Set rocket name on panel
+rctName.innerText = options.rocketName
 
 //TODO: add data input things so we can see older data, add data saving system
 
@@ -220,6 +231,8 @@ setInterval(() => {
 
 	//TODO: make it so it can use config
 
+	console.log("Hewwo");
+
 	var newData = []
 	var useNewData = false
 	var foundEnd = false
@@ -240,30 +253,41 @@ setInterval(() => {
 
 		newData = indexStr.split(',')
 
-		if(newData.length === 7) {
+		if(newData.length === 8) {
 			useNewData = true
 			console.info("VALID DATA: " + indexStr)
 		} else {
 			console.warn("INVALID DATA: " + indexStr)
 		}
-
 	}
 
-	for(var x in graphObjs) {
-		// Prevent graphs from updating if the system is paused
-		if(!paused) {
-			var g = graphObjs[x].graph
-			
-			if (useNewData) {
-				g.data.labels.push(counter)
-				g.data.datasets[0].data.push(newData[x])
-			}
+	//Data handling WARNING: HARDCODED
+	//0: First element is a boolean (0: false, 1: true), checks if the GPS has a fix
+	//6,7: Coordinates
+	if (useNewData) {
+		if (newData[0] == 0) {
+			gpsStat.innerText = "NO FIX"
+			coords.innerText = "UNKNOWN"
+		} else {
+			gpsStat.innerText = "FIX ACQUIRED"
+			coords.innerText = "Lat: " + newData[6] + " ; Lon: " + newData[7]
+			counter++ //Don't increment counter unless we KNOW that the gps has a fix
 
-			g.update()
+			for(var x in graphObjs) {
+				// Prevent graphs from updating if the system is paused
+				if(!paused) {
+					var g = graphObjs[x].graph
+					
+					g.data.labels.push(counter)
+					g.data.datasets[0].data.push(newData[x+1])
+
+					g.update()
+				}
+			}
 		}
 	}
 
-	if (useNewData) counter++
+	//1,2,3,4,5: Graph numbers
 }, 25)
 
 // Clear buffer every second

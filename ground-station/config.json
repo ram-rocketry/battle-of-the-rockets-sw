@@ -32,9 +32,9 @@
 		}
 	],
 	"options":{
-		"dataScheme":"$alt,$vel,$vol,$tem,$hum,$coordx,$coordy",
+		"dataScheme":"$gps,$alt,$vel,$vol,$tem,$hum,$coordx,$coordy",
 		"paused":false,
-		"rocketName":"RR BOTR 2023",
+		"rocketName":"Surge L1 2023",
 		"additionalFields": {
 			"coordinates": {
 				"display": "Coordinates",
@@ -42,9 +42,9 @@
 			}
 		},
 		"serial": {
-			"path": "COM4",
+			"path": "/dev/ttyUSB0",
 			"baudRate": 57600,
-			"parity": "space",
+			"parity": "none",
 			"stopBits": 1
 		}
 	}
