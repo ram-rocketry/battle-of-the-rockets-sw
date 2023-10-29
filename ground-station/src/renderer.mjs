@@ -32,6 +32,7 @@ const rctName = document.getElementById('rctname')
 // Statusbar elements
 const portStat = document.getElementById('portstat')
 const gpsStat = document.getElementById('gpsstat')
+const pauseStat = document.getElementById('pausestat')
 
 //TODO: graph management
 
@@ -46,6 +47,9 @@ var portStatus = 0					// 0: disconnected, 1: connecting, 2: connected
 var graphObjs = []					// Loaded graphs
 var port = undefined				// Serial port
 var dataBuffer = []					// Data in our "buffer"
+
+var schemeLength = options.dataScheme.split(',').length // Length of the data scheme
+console.log("Scheme: " + options.dataScheme + "; Data scheme length: " + schemeLength)
 
 var counter = 0						// Test counter
 
@@ -145,9 +149,11 @@ export function pauseUnpause() {
 	if (paused) {
 		pauseButton.classList.remove('active')
 		pauseModal.style.visibility = 'visible'
+		pauseStat.innerText = "PAUSED"
 	} else {
 		pauseButton.classList.add('active')
 		pauseModal.style.visibility = 'hidden'
+		pauseStat.innerText = "RUNNING"
 	}
 }
 
@@ -231,13 +237,15 @@ setInterval(() => {
 
 	//TODO: make it so it can use config
 
-	console.log("Hewwo");
-
 	var newData = []
 	var useNewData = false
 	var foundEnd = false
 
 	var indexStr = ""
+
+	//if (dataBuffer.length !== 0)
+	//	console.log(dataBuffer)
+
 	for (var x in dataBuffer) {
 		var c = dataBuffer[x]
 		if(c == "\n") {
@@ -253,7 +261,7 @@ setInterval(() => {
 
 		newData = indexStr.split(',')
 
-		if(newData.length === 8) {
+		if(newData.length === options.dataScheme.split(',').length) {
 			useNewData = true
 			console.info("VALID DATA: " + indexStr)
 		} else {
@@ -277,7 +285,7 @@ setInterval(() => {
 				// Prevent graphs from updating if the system is paused
 				if(!paused) {
 					var g = graphObjs[x].graph
-					
+
 					g.data.labels.push(counter)
 					g.data.datasets[0].data.push(newData[x+1])
 

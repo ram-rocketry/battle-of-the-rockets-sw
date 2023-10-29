@@ -11,28 +11,10 @@
 			"id":"vel",
 			"yLabel":"Velocity",
 			"units":"m/s"
-		},
-		{
-			"title":"Sensor Humidity",
-			"id":"hum",
-			"yLabel":"Humidity",
-			"units":"%"
-		},
-		{
-			"title":"Sensor Temperature",
-			"id":"tem",
-			"yLabel":"Temperature",
-			"units":"C"
-		},
-		{
-			"title":"Sensor Voltage",
-			"id":"vol",
-			"yLabel":"Voltage",
-			"units":"V"
 		}
 	],
 	"options":{
-		"dataScheme":"$gps,$alt,$vel,$vol,$tem,$hum,$coordx,$coordy",
+		"dataScheme":"$gps,$alt,$vel,$coordx,$coordy",
 		"paused":false,
 		"rocketName":"Surge L1 2023",
 		"additionalFields": {
