@@ -1,0 +1,7 @@
+# IDE specific, library, and cache folders
+/.idea
+*/**/.vscode
+*/**/.venv
+*/**/__pycache__
+
+# Miscellaneous file formats

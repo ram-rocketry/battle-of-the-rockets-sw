@@ -1,0 +1,33 @@
+{
+	"graphs":[
+		{
+			"title":"Rocket Altitude",
+			"id":"alt",
+			"yLabel":"Altitude",
+			"units":"m"
+		},
+		{
+			"title":"Rocket Velocity",
+			"id":"vel",
+			"yLabel":"Velocity",
+			"units":"m/s"
+		}
+	],
+	"options":{
+		"dataScheme":"$gps,$alt,$vel,$coordx,$coordy",
+		"paused":false,
+		"rocketName":"Surge L1 2023",
+		"additionalFields": {
+			"coordinates": {
+				"display": "Coordinates",
+				"textFormat": "$coordx, $coordy" 
+			}
+		},
+		"serial": {
+			"path": "/dev/ttyUSB0",
+			"baudRate": 57600,
+			"parity": "none",
+			"stopBits": 1
+		}
+	}
+}
