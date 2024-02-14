@@ -273,13 +273,15 @@ setInterval(() => {
 	//0: First element is a boolean (0: false, 1: true), checks if the GPS has a fix
 	//6,7: Coordinates
 	if (useNewData) {
-		if (newData[0] == 0) {
-			gpsStat.innerText = "NO FIX"
-			coords.innerText = "UNKNOWN"
-		} else {
-			gpsStat.innerText = "FIX ACQUIRED"
-			coords.innerText = "Lat: " + newData[6] + " ; Lon: " + newData[7]
+		// if (newData[0] == 0) {
+			// gpsStat.innerText = "NO FIX"
+			// coords.innerText = "UNKNOWN"
+		// } else {
+			// gpsStat.innerText = "FIX ACQUIRED"
+			// coords.innerText = "Lat: " + newData[6] + " ; Lon: " + newData[7]
 			counter++ //Don't increment counter unless we KNOW that the gps has a fix
+
+			var l = 1
 
 			for(var x in graphObjs) {
 				// Prevent graphs from updating if the system is paused
@@ -287,12 +289,12 @@ setInterval(() => {
 					var g = graphObjs[x].graph
 
 					g.data.labels.push(counter)
-					g.data.datasets[0].data.push(newData[x+1])
-
+					g.data.datasets[0].data.push(newData[l])
+					l++
 					g.update()
 				}
 			}
-		}
+		// }
 	}
 
 	//1,2,3,4,5: Graph numbers
